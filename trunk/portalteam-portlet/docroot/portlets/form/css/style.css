@@ -1,0 +1,23 @@
+label {
+	display: block;
+	float: left;
+	width: 200px;
+}
+
+.infoMessage {
+	list-style-type: none;
+	color: green;
+}
+.errorMessage {
+    list-style-type: none;
+    color: red;
+}
+
+.buttons {
+	margin-top: 20px;
+}
+
+.form div {
+	clear: both;
+	min-height: 30px;
+}

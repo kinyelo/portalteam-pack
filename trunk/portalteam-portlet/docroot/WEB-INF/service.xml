@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="net.portalteam">
+	<namespace>PORTALTEAM</namespace>
+
+    <!-- form portlet -->
+
+    <entity name="Form" uuid="false" local-service="true" remote-service="false">
+
+        <!-- PK fields -->
+
+        <column name="formId" type="long" primary="true" />
+
+        <!-- Audit fields -->
+
+        <column name="createDate" type="Date" />
+        <column name="modifiedDate" type="Date" />
+        <column name="createUserId" type="long" />
+        <column name="modUserId" type="long" />
+
+        <!-- Other fields -->
+
+        <column name="companyId" type="long" />
+
+        <column name="title" type="String" />
+        <column name="name" type="String" />
+        <column name="email" type="String" />
+
+        <column name="letterSubject" type="String" />
+        <column name="letterTemplate" type="String" /> <!-- Text -->
+
+        <column name="sendButtonTitle" type="String" />
+        <column name="resetButtonTitle" type="String" />
+        
+        <column name="showResetButton" type="boolean" />
+        <column name="captcha" type="boolean" />
+        
+        <column name="structure" type="String" /> <!-- Text -->
+        <column name="renderTemplate" type="String" /> <!-- Text -->
+        
+        <!-- Order -->
+
+        <!-- Finder methods -->
+
+        <finder name="CompanyId" return-type="Collection">
+            <finder-column name="companyId" />
+        </finder>
+
+        <!-- References -->
+
+        <!-- Transactions -->
+
+    </entity>
+
+    <entity name="FormData" uuid="false" local-service="true" remote-service="false">
+
+        <!-- PK fields -->
+
+        <column name="formDataId" type="long" primary="true" />
+
+        <!-- Audit fields -->
+
+        <column name="createDate" type="Date" />
+        <column name="modifiedDate" type="Date" />
+        <column name="createUserId" type="long" />
+        <column name="modUserId" type="long" />
+
+        <!-- Other fields -->
+
+        <column name="formId" type="long" />
+
+        <column name="data" type="String" /> <!-- Text -->
+        
+        <!-- Order -->
+
+        <order by="asc">
+            <order-column name="createDate" />
+        </order>
+
+        <!-- Finder methods -->
+
+        <finder name="FormId" return-type="Collection">
+            <finder-column name="formId" />
+        </finder>
+
+        <!-- References -->
+
+        <!-- Transactions -->
+
+    </entity>
+
+    <entity name="FormFile" uuid="false" local-service="true" remote-service="false">
+
+        <!-- PK fields -->
+
+        <column name="formFileId" type="long" primary="true" />
+
+        <!-- Audit fields -->
+
+        <column name="createDate" type="Date" />
+        <column name="modifiedDate" type="Date" />
+        <column name="createUserId" type="long" />
+        <column name="modUserId" type="long" />
+
+        <!-- Other fields -->
+
+        <column name="formDataId" type="long" />
+        <column name="fieldName" type="String" /> 
+
+        <column name="filename" type="String" /> 
+        <column name="mimeType" type="String" />
+        <column name="data" type="String" /> <!-- Text -->
+        
+        <!-- Order -->
+
+        <order by="asc">
+            <order-column name="createDate" />
+        </order>
+
+        <!-- Finder methods -->
+
+        <finder name="FieldName" return-type="Collection">
+            <finder-column name="formDataId" />
+            <finder-column name="fieldName" />
+        </finder>
+
+        <finder name="FormData" return-type="Collection">
+            <finder-column name="formDataId" />
+        </finder>
+
+        <!-- References -->
+
+        <!-- Transactions -->
+
+    </entity>
+
+    <entity name="FormConfig" uuid="false" local-service="true" remote-service="false">
+
+        <!-- PK fields -->
+
+        <column name="formConfigId" type="long" primary="true" />
+
+        <!-- Audit fields -->
+
+        <column name="createDate" type="Date" />
+        <column name="modifiedDate" type="Date" />
+        <column name="createUserId" type="long" />
+        <column name="modUserId" type="long" />
+
+        <!-- Other fields -->
+
+        <column name="companyId" type="long" />
+
+        <column name="enabledRecaptcha" type="boolean" />
+        <column name="recaptchaPublicKey" type="String" />
+        <column name="recaptchaPrivateKey" type="String" />
+
+        <!-- Order -->
+
+        <!-- Finder methods -->
+
+        <finder name="CompanyId" return-type="Collection">
+            <finder-column name="companyId" />
+        </finder>
+
+        <!-- References -->
+
+        <!-- Transactions -->
+
+    </entity>
+
+</service-builder>
