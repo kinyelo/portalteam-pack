@@ -69,7 +69,7 @@
 
 </div>
 #end
-#if($form.captcha && $formConfig.enableRecaptcha)
+#if($form.captcha && $formConfig.enabledRecaptcha)
 <div id="recaptcha">&nbsp;</div>
 <input id="recaptchaChallenge" type="hidden" />
 <input id="recaptchaResponse" type="hidden" />
@@ -103,16 +103,19 @@ jQuery(function() {
       else {
          formError(r.message);
       }
+      Recaptcha.reload();
     },
     error : function() {
       formError('Error occured during form submition.');
     }
   });
 
-#if($form.captcha && $formConfig.enableRecaptcha)
-  Recaptcha.create('$formConfig.recaptchaPublicKey',
-    'recaptcha', {
+#if($form.captcha && $formConfig.enabledRecaptcha)
+  jQuery.getScript('http://api.recaptcha.net/js/recaptcha_ajax.js', function() {
+	Recaptcha.create('$formConfig.recaptchaPublicKey',
+      'recaptcha', {
         theme:'red', callback: Recaptcha.focus_response_field});
+  });
 #end 
 });
 
