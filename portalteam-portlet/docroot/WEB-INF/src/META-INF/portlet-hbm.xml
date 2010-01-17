@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<class name="net.portalteam.model.impl.FormImpl" table="PORTALTEAM_Form">
+		<cache usage="read-write" />
+		<id name="formId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="email" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="letterSubject" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="letterTemplate" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="sendButtonTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="resetButtonTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="showResetButton" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="captcha" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="structure" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="renderTemplate" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="net.portalteam.model.impl.FormDataImpl" table="PORTALTEAM_FormData">
+		<cache usage="read-write" />
+		<id name="formDataId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="formId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="data" column="data_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="net.portalteam.model.impl.FormFileImpl" table="PORTALTEAM_FormFile">
+		<cache usage="read-write" />
+		<id name="formFileId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="formDataId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fieldName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="filename" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="mimeType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="data" column="data_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="net.portalteam.model.impl.FormConfigImpl" table="PORTALTEAM_FormConfig">
+		<cache usage="read-write" />
+		<id name="formConfigId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="modUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="enabledRecaptcha" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="recaptchaPublicKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="recaptchaPrivateKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>

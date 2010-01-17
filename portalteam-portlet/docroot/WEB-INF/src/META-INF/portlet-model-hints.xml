@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="net.portalteam.model.Form">
+		<field name="formId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="createUserId" type="long" />
+		<field name="modUserId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="title" type="String" />
+		<field name="name" type="String" />
+		<field name="email" type="String" />
+		<field name="letterSubject" type="String" />
+		<field name="letterTemplate" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="sendButtonTitle" type="String" />
+		<field name="resetButtonTitle" type="String" />
+		<field name="showResetButton" type="boolean" />
+		<field name="captcha" type="boolean" />
+		<field name="structure" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="renderTemplate" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+	</model>
+	<model name="net.portalteam.model.FormData">
+		<field name="formDataId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="createUserId" type="long" />
+		<field name="modUserId" type="long" />
+		<field name="formId" type="long" />
+		<field name="data" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+	</model>
+	<model name="net.portalteam.model.FormFile">
+		<field name="formFileId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="createUserId" type="long" />
+		<field name="modUserId" type="long" />
+		<field name="formDataId" type="long" />
+		<field name="fieldName" type="String" />
+		<field name="filename" type="String" />
+		<field name="mimeType" type="String" />
+		<field name="data" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+	</model>
+	<model name="net.portalteam.model.FormConfig">
+		<field name="formConfigId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="createUserId" type="long" />
+		<field name="modUserId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="enabledRecaptcha" type="boolean" />
+		<field name="recaptchaPublicKey" type="String" />
+		<field name="recaptchaPrivateKey" type="String" />
+	</model>
+</model-hints>

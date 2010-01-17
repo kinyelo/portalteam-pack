@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE structure [
+
+<!ELEMENT fields (field*)>
+<!ELEMENT field (title, name, type, mandatory, values, defaultValue, width, height)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT mandatory (#PCDATA)>
+<!ELEMENT values (#PCDATA)>
+<!ELEMENT defaultValue (#PCDATA)>
+<!ELEMENT width (#PCDATA)>
+<!ELEMENT height (#PCDATA)>
+
+]>

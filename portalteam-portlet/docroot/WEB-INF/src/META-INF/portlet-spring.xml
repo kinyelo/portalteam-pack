@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<bean id="net.portalteam.service.FormLocalService.impl" class="net.portalteam.service.impl.FormLocalServiceImpl" />
+	<bean id="net.portalteam.service.FormLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="net.portalteam.service.FormLocalService.impl" />
+	</bean>
+	<bean id="net.portalteam.service.FormLocalServiceUtil" class="net.portalteam.service.FormLocalServiceUtil">
+		<property name="service" ref="net.portalteam.service.FormLocalService.impl" />
+	</bean>
+	<bean id="net.portalteam.service.persistence.FormPersistence.impl" class="net.portalteam.service.persistence.FormPersistenceImpl" parent="basePersistence" />
+	<bean id="net.portalteam.service.persistence.FormUtil" class="net.portalteam.service.persistence.FormUtil">
+		<property name="persistence" ref="net.portalteam.service.persistence.FormPersistence.impl" />
+	</bean>
+	<bean id="net.portalteam.service.FormDataLocalService.impl" class="net.portalteam.service.impl.FormDataLocalServiceImpl" />
+	<bean id="net.portalteam.service.FormDataLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="net.portalteam.service.FormDataLocalService.impl" />
+	</bean>
+	<bean id="net.portalteam.service.FormDataLocalServiceUtil" class="net.portalteam.service.FormDataLocalServiceUtil">
+		<property name="service" ref="net.portalteam.service.FormDataLocalService.impl" />
+	</bean>
+	<bean id="net.portalteam.service.persistence.FormDataPersistence.impl" class="net.portalteam.service.persistence.FormDataPersistenceImpl" parent="basePersistence" />
+	<bean id="net.portalteam.service.persistence.FormDataUtil" class="net.portalteam.service.persistence.FormDataUtil">
+		<property name="persistence" ref="net.portalteam.service.persistence.FormDataPersistence.impl" />
+	</bean>
+	<bean id="net.portalteam.service.FormFileLocalService.impl" class="net.portalteam.service.impl.FormFileLocalServiceImpl" />
+	<bean id="net.portalteam.service.FormFileLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="net.portalteam.service.FormFileLocalService.impl" />
+	</bean>
+	<bean id="net.portalteam.service.FormFileLocalServiceUtil" class="net.portalteam.service.FormFileLocalServiceUtil">
+		<property name="service" ref="net.portalteam.service.FormFileLocalService.impl" />
+	</bean>
+	<bean id="net.portalteam.service.persistence.FormFilePersistence.impl" class="net.portalteam.service.persistence.FormFilePersistenceImpl" parent="basePersistence" />
+	<bean id="net.portalteam.service.persistence.FormFileUtil" class="net.portalteam.service.persistence.FormFileUtil">
+		<property name="persistence" ref="net.portalteam.service.persistence.FormFilePersistence.impl" />
+	</bean>
+	<bean id="net.portalteam.service.FormConfigLocalService.impl" class="net.portalteam.service.impl.FormConfigLocalServiceImpl" />
+	<bean id="net.portalteam.service.FormConfigLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="net.portalteam.service.FormConfigLocalService.impl" />
+	</bean>
+	<bean id="net.portalteam.service.FormConfigLocalServiceUtil" class="net.portalteam.service.FormConfigLocalServiceUtil">
+		<property name="service" ref="net.portalteam.service.FormConfigLocalService.impl" />
+	</bean>
+	<bean id="net.portalteam.service.persistence.FormConfigPersistence.impl" class="net.portalteam.service.persistence.FormConfigPersistenceImpl" parent="basePersistence" />
+	<bean id="net.portalteam.service.persistence.FormConfigUtil" class="net.portalteam.service.persistence.FormConfigUtil">
+		<property name="persistence" ref="net.portalteam.service.persistence.FormConfigPersistence.impl" />
+	</bean>
+</beans>
