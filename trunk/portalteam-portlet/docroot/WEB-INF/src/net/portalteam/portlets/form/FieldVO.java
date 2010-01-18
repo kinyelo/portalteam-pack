@@ -44,6 +44,7 @@ public class FieldVO {
 
 	private String title;
 	private String name;
+	private String comment;
 	private String type;
 	private boolean mandatory;
 	private String values;
@@ -54,6 +55,7 @@ public class FieldVO {
 	public FieldVO(Element e) {
 		title = e.elementText("title");
 		name = e.elementText("name");
+		comment = e.elementText("comment");
 		type = e.elementText("type");
 		mandatory = Boolean.valueOf(e.elementText("mandatory"));
 		values = e.elementText("values");
@@ -96,6 +98,14 @@ public class FieldVO {
 
 	public int getWidth() {
 		return width;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+	
+	public boolean isHasComment() {
+		return !StringUtils.isEmpty(comment);
 	}
 
 	public List<Option> getOptions() {

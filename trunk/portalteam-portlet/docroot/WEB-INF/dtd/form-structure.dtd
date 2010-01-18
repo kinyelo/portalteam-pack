@@ -2,7 +2,8 @@
 <!DOCTYPE structure [
 
 <!ELEMENT fields (field*)>
-<!ELEMENT field (title, name, type, mandatory, values, defaultValue, width, height)>
+<!ELEMENT field (title, name, comment, type, mandatory, values, defaultValue, 
+    width, height)>
 <!ELEMENT title (#PCDATA)>
 <!ELEMENT name (#PCDATA)>
 <!ELEMENT type (#PCDATA)>
@@ -11,5 +12,6 @@
 <!ELEMENT defaultValue (#PCDATA)>
 <!ELEMENT width (#PCDATA)>
 <!ELEMENT height (#PCDATA)>
+<!ELEMENT comment (#PCDATA)>
 
 ]>
