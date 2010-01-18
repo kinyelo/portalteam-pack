@@ -65,8 +65,10 @@
     #end
 </select>
 #end
-</di>
-
+</div>
+#if ($field.hasComment)
+<div class="comment">$field.comment</div>
+#end
 </div>
 #end
 #if($form.captcha && $formConfig.enabledRecaptcha)

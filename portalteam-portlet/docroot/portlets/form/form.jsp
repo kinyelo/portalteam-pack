@@ -57,7 +57,7 @@ jQuery(function() {
     PortalTeam.initJSONRpc(loadData);
 
     PortalTeam.initTabs('#tab');
-    jQuery('#template-editor').dialog({width:800, height:600, autoOpen:false});
+    jQuery('#template-editor').dialog({width:600, height:460, autoOpen:false});
     jQuery("#field-dialog").dialog({ width :500, height: 'auto', autoOpen :false });
 
     jQuery('#cancel').click(onCancel);
@@ -378,6 +378,7 @@ function fieldDialogInit() {
     if (field == null) {
     	jQuery('input[name=field.name]').val('');
     	jQuery('input[name=field.title]').val('');
+        jQuery('input[name=field.comment]').val('');
     	jQuery('select[name=field.fieldType]').val('TEXT');
     	jQuery('textarea[name=field.values]').val('');
     	jQuery('input[name=field.defaultValue]').val('');
@@ -387,6 +388,7 @@ function fieldDialogInit() {
     } else {
     	jQuery('input[name=field.name]').val(field.name);
     	jQuery('input[name=field.title]').val(field.title);
+        jQuery('input[name=field.comment]').val(field.comment);
     	jQuery('select[name=field.fieldType]').val(field.type);
     	jQuery('textarea[name=field.values]').val(field.values);
     	jQuery('input[name=field.defaultValue]').val(field.defaultValue);
@@ -401,6 +403,7 @@ function createFieldVO() {
     return {
         name : jQuery('input[name=field.name]').val(),
         title : jQuery('input[name=field.title]').val(),
+        comment : jQuery('input[name=field.comment]').val(),
         type : jQuery('select[name=field.fieldType]').val(),
         values : jQuery('textarea[name=field.values]').val(),
         defaultValue : jQuery('input[name=field.defaultValue]').val(),
@@ -503,6 +506,7 @@ function createStructure() {
 		xml += '    <field>\n'
 			+ '        <title>' + field.title + '</title>\n'
 			+ '        <name>' + field.name + '</name>\n'
+            + '        <comment>' + field.comment + '</comment>\n'
             + '        <type>' + field.type + '</type>\n'
             + '        <mandatory>' + String(field.mandatory) + '</mandatory>\n'
             + '        <values>' + field.values + '</values>\n'
@@ -590,7 +594,7 @@ function createStructure() {
 <div id="messages"> </div>
 
 <div id="template-editor" style="display:none" title="Template editor">
-    <textarea id="template" cols="120" rows="35"></textarea>
+    <textarea id="template" cols="80" rows="25"></textarea>
     <div class="buttons">
         <input id ="templateSave" type="button" value="Change" />
         <input id ="templateCancel" type="button" value="Cancel" />
@@ -607,6 +611,10 @@ function createStructure() {
     <div>
         <label>Unique name</label>
         <input name="field.name" type="text" />
+    </div>
+    <div>
+        <label>Comment</label>
+        <input name="field.comment" type="text" size="20" />
     </div>
     <div>
         <label>Field type</label>
