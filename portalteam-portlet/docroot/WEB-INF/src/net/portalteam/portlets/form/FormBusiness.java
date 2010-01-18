@@ -42,6 +42,7 @@ import net.portalteam.service.FormDataLocalServiceUtil;
 import net.portalteam.service.FormFileLocalServiceUtil;
 import net.portalteam.service.impl.VelocityService;
 import net.portalteam.servlet.FileItem;
+import net.portalteam.servlet.FormSendServlet;
 import net.portalteam.servlet.UploadException;
 import net.portalteam.util.FileUtil;
 import net.portalteam.util.MimeType;
@@ -56,12 +57,16 @@ import org.dom4j.Element;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 
 public class FormBusiness {
+
+	private static final Log logger = LogFactoryUtil.getLog(FormBusiness.class);
 
 	private long companyId;
 	
@@ -83,6 +88,7 @@ public class FormBusiness {
 			throws UploadException, SystemException {
 		
 		List<FieldVO> fields = FieldVO.create(form.getStructure());
+		validateFiles(FieldVO.getIdMap(fields), files);
 		FormData formData = FormDataLocalServiceUtil.createFormData(
 				CounterLocalServiceUtil.increment());
 		formData.setFormId(form.getFormId());
@@ -104,6 +110,25 @@ public class FormBusiness {
 		}
 	}
 
+	private static final int MB = 1024*1024;
+	
+	private void validateFiles(Map<String, FieldVO> fields,
+			List<FileItem> files) 
+			throws SystemException, UploadException {
+		for (FileItem item : files) {
+			FieldVO field = fields.get(item.getFieldName());
+			if (field != null) {
+				if (item.getData().length > field.getWidth() * MB) {
+					logger.error("File is too large");
+					throw new UploadException("File is too large.");
+				}
+			}
+			else {
+				logger.error("Field not found " + item.getFieldName());
+			}
+		}
+	}
+	
 	private void saveFiles(FormData formData, List<FileItem> files) 
 			throws SystemException {
 		for (FileItem item : files) {

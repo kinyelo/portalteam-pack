@@ -64,7 +64,7 @@ public class FormSendServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Log logger = LogFactoryUtil.getLog(FormSendServlet.class);
 
-	private static final long MAX_SIZE = 10000000;
+	private static final long MAX_SIZE = 500000000;
 	private static final String TEXT_MESSAGE = "{result:'%s', message:'%s'}";
 	private static final String PARSE_REQUEST_ERROR = "Parse request error";
 	private static final String FORM_ID_PARAM = "formId";
@@ -152,6 +152,9 @@ public class FormSendServlet extends HttpServlet {
 			FormBusiness formBusiness = new FormBusiness(companyId);
 			formBusiness.submit(form, parameters, files, request);
 			return createMessage("success", "Form was successfully submited.");
+		}
+		catch (UploadException e) {
+			throw e;
 		}
 		catch (Exception e) {
 			e.printStackTrace();

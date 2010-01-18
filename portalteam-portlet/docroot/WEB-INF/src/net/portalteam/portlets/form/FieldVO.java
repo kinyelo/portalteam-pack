@@ -24,8 +24,10 @@ package net.portalteam.portlets.form;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.dom4j.Document;
@@ -151,6 +153,14 @@ public class FieldVO {
 			e.printStackTrace();
 			return Collections.EMPTY_LIST;
 		}
+	}
+	
+	public static Map<String, FieldVO> getIdMap(List<FieldVO> list) {
+		Map<String, FieldVO> result = new HashMap<String, FieldVO>();
+		for (FieldVO field : list) {
+			result.put(field.getName(), field);
+		}
+		return result;
 	}
 	
 	public static class Option {

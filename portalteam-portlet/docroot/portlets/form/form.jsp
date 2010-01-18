@@ -341,36 +341,48 @@ function fieldDialogShowInputs() {
     	jQuery('#field-height').show();
     	jQuery('#field-width').show();
     	jQuery('#field-defaultValue').show();
+        jQuery('#field-width-label').show();
+        jQuery('#field-size-label').hide();
     }
     if (fieldType == 'LISTBOX') {
     	jQuery('#field-values').show();
     	jQuery('#field-height').hide();
     	jQuery('#field-width').hide();
     	jQuery('#field-defaultValue').hide();
+        jQuery('#field-width-label').show();
+        jQuery('#field-size-label').hide();
     }
     if (fieldType == 'CHECKBOX') {
     	jQuery('#field-values').show();
     	jQuery('#field-height').hide();
     	jQuery('#field-width').hide();
     	jQuery('#field-defaultValue').hide();
+        jQuery('#field-width-label').show();
+        jQuery('#field-size-label').hide();
     }
     if (fieldType == 'RADIO') {
     	jQuery('#field-values').show();
     	jQuery('#field-height').hide();
     	jQuery('#field-width').hide();
     	jQuery('#field-defaultValue').hide();
+        jQuery('#field-width-label').show();
+        jQuery('#field-size-label').hide();
     }
     if (fieldType == 'PASSWORD') {
     	jQuery('#field-values').hide();
     	jQuery('#field-height').hide();
     	jQuery('#field-width').show();
     	jQuery('#field-defaultValue').hide();
+        jQuery('#field-width-label').show();
+        jQuery('#field-size-label').hide();
     }
     if (fieldType == 'FILE') {
     	jQuery('#field-values').hide();
     	jQuery('#field-height').hide();
-    	jQuery('#field-width').hide();
+    	jQuery('#field-width').show();
     	jQuery('#field-defaultValue').hide();
+        jQuery('#field-width-label').hide();
+        jQuery('#field-size-label').show();
     }
 }
 
@@ -628,7 +640,8 @@ function createStructure() {
         </select>
     </div>
     <div id="field-width">
-        <label>Width in chars</label>
+        <label id="field-width-label">Width in chars</label>
+        <label id="field-size-label">Maximum allowed size in MB</label>
         <input type="text" name="field.width" />
     </div>
     <div id="field-height">
