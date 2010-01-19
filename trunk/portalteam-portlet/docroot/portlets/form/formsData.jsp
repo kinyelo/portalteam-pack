@@ -94,6 +94,9 @@ function showFormsData() {
 		h += '<tr  class="results-row">';
 		jQuery(value.data, 'formData').children().each(function() {
 		    var field = fieldsMap[this.nodeName.toLowerCase()];
+	        if (field == undefined) {
+	            return;
+	        }
 		    if (field.type != 'FILE') {
 				h += '<td><a href="#" onclick="onFormDataView(' + i +')">' 
 			    	+ jQuery(this).text() + '</a></td>';
@@ -115,6 +118,9 @@ function onFormDataView(i) {
 	var h = '<table width="50%"><tr><td width="40%"> </td><td> </td></tr>';
 	jQuery(currentFormData.data, 'formData').children().each(function() {
 		var field = fieldsMap[this.nodeName.toLowerCase()];
+		if (field == undefined) {
+			return;
+		}
 		if (field.type != 'FILE') {
 			h += '<tr><td>' + field.title + '</td><td>' 
 				+ jQuery(this).text() + '</td></tr>';
@@ -126,7 +132,11 @@ function onFormDataView(i) {
 	PortalTeam.jsonrpc.formService.getFormDataFiles(function(r,e) {
 		var h = '<table width="50%"><tr><td width="40%"> </td><td> </td></tr>';
 		jQuery.each(r.list, function(i, value) {
-			h += '<tr><td>' + fieldsMap[value.fieldName.toLowerCase()].title 
+	        var field = fieldsMap[value.fieldName.toLowerCase()];
+	        if (field == undefined) {
+	            return;
+	        }
+			h += '<tr><td>' + field.title 
 				+ '</td><td><a href="' + value.downloadUrl+ '">' + value.filename 
 				+ '</a></td></tr>';
 		});
