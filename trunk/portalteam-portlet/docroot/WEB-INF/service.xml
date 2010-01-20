@@ -155,6 +155,7 @@
         <column name="enabledRecaptcha" type="boolean" />
         <column name="recaptchaPublicKey" type="String" />
         <column name="recaptchaPrivateKey" type="String" />
+        <column name="emailFromAddress" type="String" />
 
         <!-- Order -->
 

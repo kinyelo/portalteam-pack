@@ -47,6 +47,7 @@ public class FormConfigSoap implements Serializable {
 		soapModel.setEnabledRecaptcha(model.getEnabledRecaptcha());
 		soapModel.setRecaptchaPublicKey(model.getRecaptchaPublicKey());
 		soapModel.setRecaptchaPrivateKey(model.getRecaptchaPrivateKey());
+		soapModel.setEmailFromAddress(model.getEmailFromAddress());
 
 		return soapModel;
 	}
@@ -175,6 +176,14 @@ public class FormConfigSoap implements Serializable {
 		_recaptchaPrivateKey = recaptchaPrivateKey;
 	}
 
+	public String getEmailFromAddress() {
+		return _emailFromAddress;
+	}
+
+	public void setEmailFromAddress(String emailFromAddress) {
+		_emailFromAddress = emailFromAddress;
+	}
+
 	private long _formConfigId;
 	private Date _createDate;
 	private Date _modifiedDate;
@@ -184,4 +193,5 @@ public class FormConfigSoap implements Serializable {
 	private boolean _enabledRecaptcha;
 	private String _recaptchaPublicKey;
 	private String _recaptchaPrivateKey;
+	private String _emailFromAddress;
 }

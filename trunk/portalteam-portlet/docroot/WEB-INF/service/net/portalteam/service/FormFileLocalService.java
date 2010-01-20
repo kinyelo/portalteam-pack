@@ -85,4 +85,7 @@ public interface FormFileLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<net.portalteam.model.FormFile> getByFormData(
 		long formDataId) throws com.liferay.portal.SystemException;
+
+	public void removeByFormData(long formDataId)
+		throws com.liferay.portal.SystemException;
 }

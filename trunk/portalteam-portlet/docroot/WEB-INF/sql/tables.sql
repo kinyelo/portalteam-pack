@@ -28,7 +28,8 @@ create table PORTALTEAM_FormConfig (
 	companyId LONG,
 	enabledRecaptcha BOOLEAN,
 	recaptchaPublicKey VARCHAR(75) null,
-	recaptchaPrivateKey VARCHAR(75) null
+	recaptchaPrivateKey VARCHAR(75) null,
+	emailFromAddress VARCHAR(75) null
 );
 
 create table PORTALTEAM_FormData (

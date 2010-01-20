@@ -10,6 +10,7 @@
         <header-portlet-css>/portlets/form/css/style.css</header-portlet-css>
 		<footer-portlet-javascript>/js/jsonrpc.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/portalteam.js</footer-portlet-javascript>
+        <footer-portlet-javascript>/js/form.js</footer-portlet-javascript>
 	</portlet>
 
     <role-mapper>

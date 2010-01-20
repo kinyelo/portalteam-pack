@@ -104,6 +104,11 @@ public class FormFileLocalServiceUtil {
 		return getService().getByFormData(formDataId);
 	}
 
+	public static void removeByFormData(long formDataId)
+		throws com.liferay.portal.SystemException {
+		getService().removeByFormData(formDataId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

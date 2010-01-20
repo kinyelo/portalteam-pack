@@ -75,5 +75,9 @@ public interface FormConfigModel extends BaseModel<FormConfig> {
 
 	public void setRecaptchaPrivateKey(String recaptchaPrivateKey);
 
+	public String getEmailFromAddress();
+
+	public void setEmailFromAddress(String emailFromAddress);
+
 	public FormConfig toEscapedModel();
 }
