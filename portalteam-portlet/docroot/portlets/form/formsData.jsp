@@ -92,20 +92,38 @@ function showFormsData() {
 	});
 	h += '<th></th></tr>';
 	jQuery.each(formData, function(i, value) {
-		h += '<tr  class="results-row">';
-		jQuery(value.data, 'formData').children().each(function() {
-		    var field = fieldsMap[this.nodeName.toLowerCase()];
-	        if (field == undefined) {
-	            return;
-	        }
-		    if (field.type != 'FILE') {
-				h += '<td><a href="#" onclick="onFormDataView(' + i +')">' 
-			    	+ jQuery(this).text() + '</a></td>';
-		    }
-		});
+		h += '<tr class="results-row">';
+		if (jQuery.browser.msie) {
+            var data = new ActiveXObject('Microsoft.XMLDOM');
+            data.async = false;
+            data.loadXML(value.data);
+            var formDataTag = data.getElementsByTagName('formData')[0];
+            for (var j=0;j < formDataTag.childNodes.length; j++) {
+                var node = formDataTag.childNodes[j];
+                var field = fieldsMap[node.nodeName.toLowerCase()];
+                if (field == undefined) {
+                    return;
+                }
+                if (field.type != 'FILE') {
+                    h += '<td><a href="#" onclick="onFormDataView(' + i +')">' 
+                        + node.firstChild.nodeValue + '</a></td>';
+                }
+            }            
+        } else {
+            jQuery(value.data, 'formData').children().each(function() {
+            	var field = fieldsMap[this.nodeName.toLowerCase()];
+            	if (field == undefined) {
+	                return;
+	            }
+		        if (field.type != 'FILE') {
+				    h += '<td><a href="#" onclick="onFormDataView(' + i +')">' 
+			    	    + jQuery(this).text() + '</a></td>';
+		        }
+		    });
+        }
         h += '<td><a href="#" onclick="onFormDataRemove(' + i + ')">'
             + '<img src="/portalteam-portlet/images/02_x.png" /></a></td></tr>';
-	});
+    });
 	jQuery('#formsData').html(h + '</table>');
 	jQuery('#formsData tr:even').addClass('alt');	
 }
@@ -118,16 +136,35 @@ function onFormsChange() {
 function onFormDataView(i) {
 	currentFormData = formData[i];
 	var h = '<table width="50%"><tr><td width="40%"> </td><td> </td></tr>';
-	jQuery(currentFormData.data, 'formData').children().each(function() {
-		var field = fieldsMap[this.nodeName.toLowerCase()];
-		if (field == undefined) {
-			return;
-		}
-		if (field.type != 'FILE') {
-			h += '<tr><td>' + field.title + '</td><td>' 
-				+ jQuery(this).text() + '</td></tr>';
-		}
-	});
+    if (jQuery.browser.msie) {
+        var data = new ActiveXObject('Microsoft.XMLDOM');
+        data.async = false;
+        data.loadXML(currentFormData.data);
+        var formDataTag = data.getElementsByTagName('formData')[0];
+        for (var j=0;j < formDataTag.childNodes.length; j++) {
+            var node = formDataTag.childNodes[j];
+            var field = fieldsMap[node.nodeName.toLowerCase()];
+            if (field == undefined) {
+                return;
+            }
+            if (field.type != 'FILE') {
+                h += '<tr><td>' + field.title + '</td><td>' 
+                    + node.firstChild.nodeValue + '</td></tr>';
+            }
+        }
+    }
+    else { 
+	    jQuery(currentFormData.data, 'formData').children().each(function() {
+		    var field = fieldsMap[this.nodeName.toLowerCase()];
+		    if (field == undefined) {
+			    return;
+		    }
+		    if (field.type != 'FILE') {
+			    h += '<tr><td>' + field.title + '</td><td>' 
+				    + jQuery(this).text() + '</td></tr>';
+		    }
+     	});
+    }
 	jQuery('#fieldsData').html(h + '</table>');
 	jQuery('#formsDataDiv').hide();
 	jQuery('#formDiv').show();

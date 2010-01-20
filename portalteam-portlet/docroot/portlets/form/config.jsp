@@ -29,7 +29,7 @@
 var config = null;
 
 jQuery(function() {
-	jQuery('ul.tabs li:nth-child(4) ').addClass('current first');
+	jQuery('ul.tabs li:nth-child(4)').addClass('current first');
     PortalTeam.initJSONRpc(loadConfig);
     jQuery('#save').click(onSave);
 });
@@ -54,7 +54,7 @@ function onSave() {
 		enabledRecaptcha : String(jQuery('#enabledRecaptcha:checked').size() > 0),
 		recaptchaPublicKey : jQuery('#recaptchaPublicKey').val(),
         recaptchaPrivateKey : jQuery('#recaptchaPrivateKey').val(),
-        emailFromAddress : jQuery('#emailFromAddress').val(),
+        emailFromAddress : jQuery('#emailFromAddress').val()
 	};
 	PortalTeam.jsonrpc.formService.saveConfig(function(r,e) {
 		if (PortalTeam.serviceFailed(e)) return;
@@ -69,7 +69,6 @@ function onSave() {
 <%@ include file="tab.jsp" %>
 
 <div>
-
 <div class="form">
     <div>
         <label>Enable reCaptcha</label>
@@ -77,11 +76,11 @@ function onSave() {
     </div>
     <div>
         <label>reCaptcha public key</label>
-        <input id="recaptchaPublicKey" type="text" />
+        <input id="recaptchaPublicKey" type="text" size="40" />
     </div>
     <div>
         <label>reCaptcha private key</label>
-        <input id="recaptchaPrivateKey" type="text" />
+        <input id="recaptchaPrivateKey" type="text" size="40"/>
     </div>
     <div>
         <label>Email from address</label>
@@ -91,9 +90,8 @@ function onSave() {
         <input id ="save" type="button" value="Save" />
     </div>
 </div>
-
 </div>
 
 </div>
 
-<div id="messages"></div>
+<div id="messages"> </div>

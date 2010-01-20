@@ -159,7 +159,7 @@ var PortalTeam = {
 		else {
 			PortalTeam.showErrors(id, r.messages.list);
 		}
-	},
+	}
 
 };
 

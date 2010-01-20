@@ -179,7 +179,7 @@ function onSave() {
         captcha : String(jQuery('#captcha:checked').size() > 0),
         structure : structure,
         letterTemplate : letterTemplate,
-        renderTemplate : renderTemplate,
+        renderTemplate : renderTemplate
     };
     var errors = validateForm(vo);
     if (errors.length == 0) {
