@@ -59,4 +59,6 @@ public interface FormService {
 	FormDataVO selectFormData(long formId) throws PortalException, SystemException;
 	
 	List<FormFileVO> getFormDataFiles(long formDataId) throws SystemException;
+	
+	ServiceResponse removeFormData(long formDataId);
 }

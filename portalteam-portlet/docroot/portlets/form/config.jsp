@@ -46,6 +46,7 @@ function showConfig() {
 	jQuery('#enabledRecaptcha')[0].checked = config.enabledRecaptcha;
     jQuery('#recaptchaPublicKey').val(config.recaptchaPublicKey);
     jQuery('#recaptchaPrivateKey').val(config.recaptchaPrivateKey);
+    jQuery('#emailFromAddress').val(config.emailFromAddress);
 }
 
 function onSave() {
@@ -53,6 +54,7 @@ function onSave() {
 		enabledRecaptcha : String(jQuery('#enabledRecaptcha:checked').size() > 0),
 		recaptchaPublicKey : jQuery('#recaptchaPublicKey').val(),
         recaptchaPrivateKey : jQuery('#recaptchaPrivateKey').val(),
+        emailFromAddress : jQuery('#emailFromAddress').val(),
 	};
 	PortalTeam.jsonrpc.formService.saveConfig(function(r,e) {
 		if (PortalTeam.serviceFailed(e)) return;
@@ -80,6 +82,10 @@ function onSave() {
     <div>
         <label>reCaptcha private key</label>
         <input id="recaptchaPrivateKey" type="text" />
+    </div>
+    <div>
+        <label>Email from address</label>
+        <input id="emailFromAddress" type="text" />
     </div>
     <div class="buttons">
         <input id ="save" type="button" value="Save" />

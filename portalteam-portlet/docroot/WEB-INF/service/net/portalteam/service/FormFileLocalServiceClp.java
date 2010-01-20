@@ -429,5 +429,28 @@ public class FormFileLocalServiceClp implements FormFileLocalService {
 		return (java.util.List<net.portalteam.model.FormFile>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public void removeByFormData(long formDataId)
+		throws com.liferay.portal.SystemException {
+		Object paramObj0 = new LongWrapper(formDataId);
+
+		try {
+			_classLoaderProxy.invoke("removeByFormData",
+				new Object[] { paramObj0 });
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.SystemException) {
+				throw (com.liferay.portal.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	private ClassLoaderProxy _classLoaderProxy;
 }

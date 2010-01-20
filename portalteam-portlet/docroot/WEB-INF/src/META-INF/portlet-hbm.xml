@@ -64,5 +64,6 @@
 		<property name="enabledRecaptcha" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="recaptchaPublicKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="recaptchaPrivateKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="emailFromAddress" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

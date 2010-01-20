@@ -61,5 +61,6 @@
 		<field name="enabledRecaptcha" type="boolean" />
 		<field name="recaptchaPublicKey" type="String" />
 		<field name="recaptchaPrivateKey" type="String" />
+		<field name="emailFromAddress" type="String" />
 	</model>
 </model-hints>

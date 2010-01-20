@@ -36,8 +36,10 @@ import javax.mail.internet.InternetAddress;
 import javax.servlet.http.HttpServletRequest;
 
 import net.portalteam.model.Form;
+import net.portalteam.model.FormConfig;
 import net.portalteam.model.FormData;
 import net.portalteam.model.FormFile;
+import net.portalteam.service.FormConfigLocalServiceUtil;
 import net.portalteam.service.FormDataLocalServiceUtil;
 import net.portalteam.service.FormFileLocalServiceUtil;
 import net.portalteam.service.impl.VelocityService;
@@ -177,7 +179,7 @@ public class FormBusiness {
 			InternetAddress toAddress = new InternetAddress(form.getEmail());
 			String subject = form.getLetterSubject();
 			InternetAddress fromAddress = new InternetAddress(
-					PrefsPropsUtil.getString(companyId,	"admin.email.from.address"));
+					getConfig().getEmailFromAddress());
 	
 			MailMessage mailMessage = new MailMessage(fromAddress, toAddress, 
 					subject, letter, true);
@@ -192,6 +194,10 @@ public class FormBusiness {
 			e.printStackTrace();
 			throw new UploadException(e.getMessage());
 		}
+	}
+	
+	private FormConfig getConfig() throws SystemException {
+		return FormConfigLocalServiceUtil.getFormConfigByCompany(companyId);
 	}
 	
 	private static File getAttachment(FormData formData, FieldVO field)  

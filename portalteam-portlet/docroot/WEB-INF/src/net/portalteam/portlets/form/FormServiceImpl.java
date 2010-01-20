@@ -31,6 +31,7 @@ import java.util.Map;
 
 import net.portalteam.model.Form;
 import net.portalteam.model.FormConfig;
+import net.portalteam.model.FormData;
 import net.portalteam.model.FormFile;
 import net.portalteam.portlets.AbstractService;
 import net.portalteam.portlets.ServiceResponse;
@@ -208,6 +209,7 @@ public class FormServiceImpl extends AbstractService implements FormService {
 		config.setEnabledRecaptcha(Boolean.valueOf(vo.get("enabledRecaptcha")));
 		config.setRecaptchaPublicKey(vo.get("recaptchaPublicKey"));
 		config.setRecaptchaPrivateKey(vo.get("recaptchaPrivateKey"));
+		config.setEmailFromAddress(vo.get("emailFromAddress"));
 		FormConfigLocalServiceUtil.updateFormConfig(config);
 		return ServiceResponse.createSuccessResponse(
 				"Form configuration was successfully saved.");
@@ -233,6 +235,25 @@ public class FormServiceImpl extends AbstractService implements FormService {
 			result.add(new FormFileVO(formFile));
 		}
 		return result;
+	}
+
+	@Override
+	public ServiceResponse removeFormData(long formDataId) {
+		FormData formData;
+		try {
+			formData = FormDataLocalServiceUtil.getFormData(formDataId);
+			if (formData != null) {
+				FormFileLocalServiceUtil.removeByFormData(formDataId);
+				FormDataLocalServiceUtil.deleteFormData(formDataId);
+			}
+			return ServiceResponse.createSuccessResponse("Successfully deleted.");
+		} catch (PortalException e) {
+			logger.error(e.getMessage());
+			return ServiceResponse.createErrorResponse(e.getMessage());
+		} catch (SystemException e) {
+			logger.error(e.getMessage());
+			return ServiceResponse.createErrorResponse(e.getMessage());
+		}
 	}
 
 }

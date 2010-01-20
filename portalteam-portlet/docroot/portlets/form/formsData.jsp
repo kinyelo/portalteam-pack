@@ -83,13 +83,14 @@ function createFieldsMap() {
 }
 
 function showFormsData() {
-	var h = '<table class="taglib-search-iterator"><tr class="portlet-section-header results-header">';
+	var h = '<table class="taglib-search-iterator">\
+		<tr class="portlet-section-header results-header">';
 	jQuery.each(fields, function(i, value) {
 		if (value.type != 'FILE') {
 			h += '<th>' + value.title + '</th>';		
 		}
 	});
-	h += '</tr>';
+	h += '<th></th></tr>';
 	jQuery.each(formData, function(i, value) {
 		h += '<tr  class="results-row">';
 		jQuery(value.data, 'formData').children().each(function() {
@@ -100,9 +101,10 @@ function showFormsData() {
 		    if (field.type != 'FILE') {
 				h += '<td><a href="#" onclick="onFormDataView(' + i +')">' 
 			    	+ jQuery(this).text() + '</a></td>';
-		    }		
+		    }
 		});
-		h += '</tr>';
+        h += '<td><a href="#" onclick="onFormDataRemove(' + i + ')">'
+            + '<img src="/portalteam-portlet/images/02_x.png" /></a></td></tr>';
 	});
 	jQuery('#formsData').html(h + '</table>');
 	jQuery('#formsData tr:even').addClass('alt');	
@@ -147,6 +149,19 @@ function onFormDataView(i) {
 function onBack() {
 	jQuery('#formsDataDiv').show();
 	jQuery('#formDiv').hide();
+}
+
+function onFormDataRemove(i) {
+    if (confirm('Are you shure?')) {
+        PortalTeam.jsonrpc.formService.removeFormData(function(r,e) {
+            if (PortalTeam.serviceFailed(e)) return;
+            PortalTeam.showServiceMessages('#messages', r);
+            if (r.success) {
+                formData.splice(i, 1);
+                showFormsData();
+            }
+        }, formData[i].formDataId);
+    }
 }
 
 </script>

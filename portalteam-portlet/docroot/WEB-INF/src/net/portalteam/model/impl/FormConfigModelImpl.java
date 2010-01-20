@@ -76,9 +76,12 @@ public class FormConfigModelImpl extends BaseModelImpl<FormConfig> {
 			{ "recaptchaPublicKey", new Integer(Types.VARCHAR) },
 			
 
-			{ "recaptchaPrivateKey", new Integer(Types.VARCHAR) }
+			{ "recaptchaPrivateKey", new Integer(Types.VARCHAR) },
+			
+
+			{ "emailFromAddress", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table PORTALTEAM_FormConfig (formConfigId LONG not null primary key,createDate DATE null,modifiedDate DATE null,createUserId LONG,modUserId LONG,companyId LONG,enabledRecaptcha BOOLEAN,recaptchaPublicKey VARCHAR(75) null,recaptchaPrivateKey VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table PORTALTEAM_FormConfig (formConfigId LONG not null primary key,createDate DATE null,modifiedDate DATE null,createUserId LONG,modUserId LONG,companyId LONG,enabledRecaptcha BOOLEAN,recaptchaPublicKey VARCHAR(75) null,recaptchaPrivateKey VARCHAR(75) null,emailFromAddress VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table PORTALTEAM_FormConfig";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -102,6 +105,7 @@ public class FormConfigModelImpl extends BaseModelImpl<FormConfig> {
 		model.setEnabledRecaptcha(soapModel.getEnabledRecaptcha());
 		model.setRecaptchaPublicKey(soapModel.getRecaptchaPublicKey());
 		model.setRecaptchaPrivateKey(soapModel.getRecaptchaPrivateKey());
+		model.setEmailFromAddress(soapModel.getEmailFromAddress());
 
 		return model;
 	}
@@ -210,6 +214,14 @@ public class FormConfigModelImpl extends BaseModelImpl<FormConfig> {
 		_recaptchaPrivateKey = recaptchaPrivateKey;
 	}
 
+	public String getEmailFromAddress() {
+		return GetterUtil.getString(_emailFromAddress);
+	}
+
+	public void setEmailFromAddress(String emailFromAddress) {
+		_emailFromAddress = emailFromAddress;
+	}
+
 	public FormConfig toEscapedModel() {
 		if (isEscapedModel()) {
 			return (FormConfig)this;
@@ -230,6 +242,7 @@ public class FormConfigModelImpl extends BaseModelImpl<FormConfig> {
 			model.setRecaptchaPublicKey(HtmlUtil.escape(getRecaptchaPublicKey()));
 			model.setRecaptchaPrivateKey(HtmlUtil.escape(
 					getRecaptchaPrivateKey()));
+			model.setEmailFromAddress(HtmlUtil.escape(getEmailFromAddress()));
 
 			model = (FormConfig)Proxy.newProxyInstance(FormConfig.class.getClassLoader(),
 					new Class[] { FormConfig.class },
@@ -260,6 +273,7 @@ public class FormConfigModelImpl extends BaseModelImpl<FormConfig> {
 		clone.setEnabledRecaptcha(getEnabledRecaptcha());
 		clone.setRecaptchaPublicKey(getRecaptchaPublicKey());
 		clone.setRecaptchaPrivateKey(getRecaptchaPrivateKey());
+		clone.setEmailFromAddress(getEmailFromAddress());
 
 		return clone;
 	}
@@ -327,6 +341,8 @@ public class FormConfigModelImpl extends BaseModelImpl<FormConfig> {
 		sb.append(getRecaptchaPublicKey());
 		sb.append(", recaptchaPrivateKey=");
 		sb.append(getRecaptchaPrivateKey());
+		sb.append(", emailFromAddress=");
+		sb.append(getEmailFromAddress());
 		sb.append("}");
 
 		return sb.toString();
@@ -375,6 +391,10 @@ public class FormConfigModelImpl extends BaseModelImpl<FormConfig> {
 			"<column><column-name>recaptchaPrivateKey</column-name><column-value><![CDATA[");
 		sb.append(getRecaptchaPrivateKey());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>emailFromAddress</column-name><column-value><![CDATA[");
+		sb.append(getEmailFromAddress());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -390,5 +410,6 @@ public class FormConfigModelImpl extends BaseModelImpl<FormConfig> {
 	private boolean _enabledRecaptcha;
 	private String _recaptchaPublicKey;
 	private String _recaptchaPrivateKey;
+	private String _emailFromAddress;
 	private transient ExpandoBridge _expandoBridge;
 }

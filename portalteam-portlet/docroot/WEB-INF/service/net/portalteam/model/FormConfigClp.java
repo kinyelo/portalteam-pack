@@ -131,6 +131,14 @@ public class FormConfigClp extends BaseModelImpl<FormConfig>
 		_recaptchaPrivateKey = recaptchaPrivateKey;
 	}
 
+	public String getEmailFromAddress() {
+		return _emailFromAddress;
+	}
+
+	public void setEmailFromAddress(String emailFromAddress) {
+		_emailFromAddress = emailFromAddress;
+	}
+
 	public FormConfig toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -150,6 +158,7 @@ public class FormConfigClp extends BaseModelImpl<FormConfig>
 			model.setRecaptchaPublicKey(HtmlUtil.escape(getRecaptchaPublicKey()));
 			model.setRecaptchaPrivateKey(HtmlUtil.escape(
 					getRecaptchaPrivateKey()));
+			model.setEmailFromAddress(HtmlUtil.escape(getEmailFromAddress()));
 
 			model = (FormConfig)Proxy.newProxyInstance(FormConfig.class.getClassLoader(),
 					new Class[] { FormConfig.class },
@@ -171,6 +180,7 @@ public class FormConfigClp extends BaseModelImpl<FormConfig>
 		clone.setEnabledRecaptcha(getEnabledRecaptcha());
 		clone.setRecaptchaPublicKey(getRecaptchaPublicKey());
 		clone.setRecaptchaPrivateKey(getRecaptchaPrivateKey());
+		clone.setEmailFromAddress(getEmailFromAddress());
 
 		return clone;
 	}
@@ -238,6 +248,8 @@ public class FormConfigClp extends BaseModelImpl<FormConfig>
 		sb.append(getRecaptchaPublicKey());
 		sb.append(", recaptchaPrivateKey=");
 		sb.append(getRecaptchaPrivateKey());
+		sb.append(", emailFromAddress=");
+		sb.append(getEmailFromAddress());
 		sb.append("}");
 
 		return sb.toString();
@@ -286,6 +298,10 @@ public class FormConfigClp extends BaseModelImpl<FormConfig>
 			"<column><column-name>recaptchaPrivateKey</column-name><column-value><![CDATA[");
 		sb.append(getRecaptchaPrivateKey());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>emailFromAddress</column-name><column-value><![CDATA[");
+		sb.append(getEmailFromAddress());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -301,4 +317,5 @@ public class FormConfigClp extends BaseModelImpl<FormConfig>
 	private boolean _enabledRecaptcha;
 	private String _recaptchaPublicKey;
 	private String _recaptchaPrivateKey;
+	private String _emailFromAddress;
 }

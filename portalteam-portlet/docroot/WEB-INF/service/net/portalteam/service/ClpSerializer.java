@@ -449,6 +449,13 @@ public class ClpSerializer {
 
 					method8.invoke(newModel, value8);
 
+					Method method9 = newModelClass.getMethod("setEmailFromAddress",
+							new Class[] { String.class });
+
+					String value9 = oldCplModel.getEmailFromAddress();
+
+					method9.invoke(newModel, value9);
+
 					return newModel;
 				}
 				catch (Exception e) {
@@ -849,6 +856,14 @@ public class ClpSerializer {
 							(Object[])null);
 
 					newModel.setRecaptchaPrivateKey(value8);
+
+					Method method9 = oldModelClass.getMethod(
+							"getEmailFromAddress");
+
+					String value9 = (String)method9.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setEmailFromAddress(value9);
 
 					return newModel;
 				}

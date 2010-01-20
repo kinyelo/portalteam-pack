@@ -51,5 +51,13 @@ public class FormFileLocalServiceImpl extends FormFileLocalServiceBaseImpl {
 			throws SystemException {
 		return formFilePersistence.findByFormData(formDataId);
 	}
+
+	public void removeByFormData(long formDataId) 
+			throws SystemException {
+		List<FormFile> list = formFilePersistence.findByFormData(formDataId);
+		for (FormFile formFile : list) {
+			formFilePersistence.remove(formFile);
+		}
+	}
 	
 }
