@@ -63,6 +63,7 @@ function showForms() {
 function loadFormData() {
 	if (form == null) {
 		formData = [];
+		fields = [];
 		showFormsData();
 		return;
 	}

@@ -4,5 +4,6 @@
 <display>
 	<category name="PortalTeam.net">
 		<portlet id="form" />
+        <portlet id="form-admin" />
    	</category>
 </display>
