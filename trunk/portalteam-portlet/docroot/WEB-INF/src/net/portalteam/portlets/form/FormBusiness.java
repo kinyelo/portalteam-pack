@@ -185,7 +185,10 @@ public class FormBusiness {
 					subject, letter, true);
 			for (FieldVO field : fields) {
 				if (field.getType().equals("FILE")) {
-					mailMessage.addAttachment(getAttachment(formData, field));
+					File file = getAttachment(formData, field);
+					if (file != null) {
+						mailMessage.addAttachment(file);
+					}
 				}
 			}
 			MailServiceUtil.sendEmail(mailMessage);
@@ -204,6 +207,9 @@ public class FormBusiness {
 			throws IOException, SystemException {
 		FormFile formFile = FormFileLocalServiceUtil.getByFieldName(
 				formData.getFormDataId(), field.getName());
+		if (formFile == null) {
+			return null;
+		}
 		File file = File.createTempFile(
 				FileUtil.getFilenameWithoutExtension(formFile.getFilename()),
 				FileUtil.getFilenameExtension(formFile.getFilename()));
