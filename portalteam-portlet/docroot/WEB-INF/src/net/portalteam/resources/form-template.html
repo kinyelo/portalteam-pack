@@ -97,17 +97,12 @@ jQuery(function() {
   jQuery('#form-$form.name').ajaxForm({
     dataType:'json',
     beforeSubmit: formValidate,
-    success: function(r) {
-      if (r.result == 'success') {
-         formInfo(r.message);
-         jQuery('#form-$form.name')[0].reset();
-      }
-      else {
-         formError(r.message);
-      }
-      #if($form.captcha && $formConfig.enabledRecaptcha)
-      Recaptcha.reload();
-      #end
+    success: function() {
+        formInfo('Successfully submited.');
+        jQuery('#form-$form.name')[0].reset();
+        #if($form.captcha && $formConfig.enabledRecaptcha)
+        Recaptcha.reload();
+        #end
     },
     error : function() {
       formError('Error occured during form submition.');
